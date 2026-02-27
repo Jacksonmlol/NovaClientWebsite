@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play - Nova</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-effects">
+        <div class="grid-overlay"></div>
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
+    
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <span>←</span> Back
+        </a>
+        
+        <div class="hero">
+            <h1 class="logo small" data-text="NOVA">NOVA</h1>
+        </div>
+        
+        <div class="card play-card">
+            <div class="card-inner">
+                <h2 class="card-title">Launch Options</h2>
+                
+                <div class="play-options">
+                    <button class="play-option" onclick="window.location.href='nova.html'">
+                        <span class="option-icon">▶</span>
+                        <span class="option-text">Nova</span>
+                        <span class="option-sub">Client</span>
+                    </button>
+                
+                <div class="server-info">
+                    <div class="server-ip">
+                        <span class="ip-label">Server IP</span>
+                        <span class="ip-address" id="server-ip">wss://8b4t.org</span>
+                        <button class="copy-btn" onclick="copyIP()">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <span class="version">v1</span>
+            <span class="separator">•</span>
+            <span class="copyright">NovaClient © 2026</span>
+        </footer>
+    </div>
+    
+    <script>
+        function copyIP() {
+            const ip = document.getElementById('server-ip').innerText;
+            navigator.clipboard.writeText(ip);
+            const btn = document.querySelector('.copy-btn');
+            btn.innerText = 'Copied!';
+            setTimeout(() => btn.innerText = 'Copy', 2000);
+        }
+    </script>
+</body>
+</html>
