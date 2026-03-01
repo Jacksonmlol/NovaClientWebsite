@@ -5,62 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="bg-effects">
-        <div class="grid-overlay"></div>
-        <div class="glow glow-1"></div>
-        <div class="glow glow-2"></div>
-    </div>
-    
     <div class="container">
-        <div class="hero">
-            <h1 class="logo" data-text="NOVA">NOVA</h1>
-            <p class="tagline">Client</p>
-        </div>
-        
-        <div class="card">
-            <div class="card-inner">
-                <h2 class="card-title">Welcome</h2>
-                <p class="card-text">
-                    Welcome to the NovaClient official website<br>
-                    Here you can find Nova things
-                </p>
-                
-                <div class="play-section">
-                    <a href="play.html" class="play-btn">
-                        <span class="play-icon">▶</span>
-                        <span class="play-text">PLAY</span>
-                    </a>
-                </div>
-                
-                <div class="links">
-                    <a href="https://youtube.com/@Jackson_lol" class="link-item" target="_blank">
-                        <span class="link-icon">▶</span>
-                        <span>YouTube</span>
-                    </a>
-                    <a href="https://github.com/Jacksonmlol" class="link-item" target="_blank">
-                        <span class="link-icon">⌘</span>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://discord.gg/chc7hVy7" class="link-item" target="_blank">
-                        <span class="link-icon">◆</span>
-                        <span>Discord</span>
-                    </a>
-                </div>
+        <header class="site-header">
+            <div class="logo-text">NovaClient</div>
+            <div class="logo-divider">============</div>
+            <p class="tagline">a eaglercraft client for chads</p>
+        </header>
+
+        <div class="section">
+            <div class="section-divider">-----------</div>
+            <div class="section-title">welcome</div>
+            <div class="section-body">
+                <p>welcome to the novaclient official website.</p>
+                <p>here you can find nova things and launch the client.</p>
             </div>
+            <a href="play.html" class="play-btn">[ play ]</a>
         </div>
-        
+
+        <div class="section">
+            <div class="section-divider">-----------</div>
+            <div class="section-title">links</div>
+            <ul class="nav-links">
+                <li><a href="https://youtube.com/@Jackson_lol" target="_blank">youtube</a></li>
+                <li><a href="https://github.com/Jacksonmlol" target="_blank">github</a></li>
+                <li><a href="https://discord.gg/chc7hVy7" target="_blank">discord</a></li>
+            </ul>
+        </div>
+
         <footer class="footer">
-            <span class="version">v1.12.2</span>
-            <span class="separator">•</span>
-            <span class="copyright">NovaClient © 2026</span>
+            NovaClient &copy; 2026 &nbsp;&bull;&nbsp; v1
         </footer>
     </div>
-    
-    <script src="script.js"></script>
 </body>
 </html>

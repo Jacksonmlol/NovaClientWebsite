@@ -5,61 +5,204 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play - Nova</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .client-card {
+            border: 1px solid var(--border);
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: border-color 0.15s, background 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .client-card:hover,
+        .client-card.selected {
+            border-color: var(--accent);
+            background: rgba(138, 170, 110, 0.05);
+        }
+
+        .client-card .radio {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            width: 18px;
+        }
+
+        .client-card.selected .radio {
+            color: var(--accent);
+        }
+
+        .client-info {
+            flex: 1;
+        }
+
+        .client-name {
+            color: var(--text);
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .client-desc {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        .client-tag {
+            color: var(--accent2);
+            font-size: 0.75rem;
+            border: 1px solid var(--accent2);
+            padding: 1px 6px;
+            flex-shrink: 0;
+        }
+
+        .launch-panel {
+            margin-top: 4px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            background: rgba(0,0,0,0.2);
+        }
+
+        .lp-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .lp-row:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .lp-label {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .lp-value {
+            color: var(--text);
+            font-size: 0.85rem;
+        }
+
+        .launch-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
+        }
+
+        #status-msg {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        #status-msg.ok { color: var(--accent); }
+        #status-msg.err { color: #cc6666; }
+    </style>
 </head>
 <body>
-    <div class="bg-effects">
-        <div class="grid-overlay"></div>
-        <div class="glow glow-1"></div>
-        <div class="glow glow-2"></div>
-    </div>
-    
     <div class="container">
-        <a href="index.html" class="back-btn">
-            <span>←</span> Back
-        </a>
-        
-        <div class="hero">
-            <h1 class="logo small" data-text="NOVA">NOVA</h1>
+        <a href="index.html" class="back-link">← back</a>
+
+        <header class="site-header">
+            <div class="logo-text">NovaClient</div>
+            <div class="logo-divider">============</div>
+            <p class="tagline">play</p>
+        </header>
+
+        <div class="section">
+            <div class="section-divider">-----------</div>
+            <div class="section-title">select client</div>
+
+            <div class="client-card selected" id="card-nova" onclick="selectClient('nova')">
+                <span class="radio" id="radio-nova">[x]</span>
+                <div class="client-info">
+                    <div class="client-name">Nova</div>
+                    <div class="client-desc">official novaclient 1.12</div>
+                </div>
+                <span class="client-tag">stable</span>
+            </div>
         </div>
-        
-        <div class="card play-card">
-            <div class="card-inner">
-                <h2 class="card-title">Launch Options</h2>
-                
-                <div class="play-options">
-                    <button class="play-option" onclick="window.location.href='nova.html'">
-                        <span class="option-icon">▶</span>
-                        <span class="option-text">Nova</span>
-                        <span class="option-sub">Client</span>
-                    </button>
-                
-                <div class="server-info">
-                    <div class="server-ip">
-                        <span class="ip-label">Server IP</span>
-                        <span class="ip-address" id="server-ip">wss://8b4t.org</span>
-                        <button class="copy-btn" onclick="copyIP()">Copy</button>
-                    </div>
+
+        <div class="section">
+            <div class="section-divider">-----------</div>
+            <div class="section-title">server</div>
+            <div class="ip-row">
+                <span class="ip-label">ip:</span>
+                <span class="ip-address" id="server-ip">wss://8b4t.org</span>
+                <button class="copy-btn" onclick="copyIP()">copy</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-divider">-----------</div>
+            <div class="section-title">launch</div>
+
+            <div class="launch-panel">
+                <div class="lp-row">
+                    <span class="lp-label">client</span>
+                    <span class="lp-value" id="lp-client">Nova</span>
+                </div>
+                <div class="lp-row">
+                    <span class="lp-label">server</span>
+                    <span class="lp-value">wss://8b4t.org</span>
+                </div>
+                <div class="lp-row">
+                    <span class="lp-label">version</span>
+                    <span class="lp-value">1.12.2</span>
+                </div>
+                <div class="launch-bar">
+                    <button class="play-btn" onclick="launchClient()" style="margin-top:0">[ launch ]</button>
+                    <span id="status-msg"></span>
                 </div>
             </div>
         </div>
-        
+
         <footer class="footer">
-            <span class="version">v1</span>
-            <span class="separator">•</span>
-            <span class="copyright">NovaClient © 2026</span>
+            NovaClient &copy; 2026 &nbsp;&bull;&nbsp; v1
         </footer>
     </div>
-    
+
     <script>
+        let selected = 'nova';
+        const clients = {
+            nova: { name: 'Nova', url: 'nova.html' }
+        };
+
+        function selectClient(id) {
+            selected = id;
+            document.querySelectorAll('.client-card').forEach(c => c.classList.remove('selected'));
+            document.querySelectorAll('.client-card .radio').forEach(r => r.textContent = '[ ]');
+            document.getElementById('card-' + id).classList.add('selected');
+            document.getElementById('radio-' + id).textContent = '[x]';
+            document.getElementById('lp-client').textContent = clients[id].name;
+            setStatus('');
+        }
+
+        function launchClient() {
+            setStatus('launching...', '');
+            setTimeout(() => {
+                window.location.href = clients[selected].url;
+            }, 400);
+        }
+
         function copyIP() {
             const ip = document.getElementById('server-ip').innerText;
             navigator.clipboard.writeText(ip);
             const btn = document.querySelector('.copy-btn');
-            btn.innerText = 'Copied!';
-            setTimeout(() => btn.innerText = 'Copy', 2000);
+            btn.innerText = 'copied!';
+            setTimeout(() => btn.innerText = 'copy', 2000);
+        }
+
+        function setStatus(msg, type) {
+            const el = document.getElementById('status-msg');
+            el.textContent = msg;
+            el.className = type || '';
         }
     </script>
 </body>
